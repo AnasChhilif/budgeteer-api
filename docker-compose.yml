@@ -2,9 +2,8 @@ version: "3.8"
 
 services:
   kotlin-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: budgeteer
+    container_name: budgeteer_api
     ports:
       - "8080:8080"
     depends_on:
