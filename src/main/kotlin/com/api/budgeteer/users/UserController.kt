@@ -26,6 +26,16 @@ class UserController (@Autowired private val userRepository: UserRepository) {
         return ResponseEntity(newUser,HttpStatus.CREATED)
     }
 
+    @DeleteMapping("/{id}")
+    fun deleteUser(@PathVariable id: Long): ResponseEntity<Unit> {
+        if(userRepository.existsById(id)){
+            userRepository.deleteById(id)
+            return ResponseEntity(Unit,HttpStatus.OK)
+        }
+        return ResponseEntity(Unit,HttpStatus.NOT_FOUND)
+    }
+
+
 
 
 }
