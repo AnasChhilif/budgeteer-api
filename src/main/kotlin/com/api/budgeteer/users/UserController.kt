@@ -8,31 +8,29 @@ import org.springframework.http.ResponseEntity
 
 @RestController
 @RequestMapping("/users")
-class UserController (@Autowired private val userRepository: UserRepository) {
+class UserController(private val userHandler: UserHandler)  {
+
 
     @GetMapping("")
     fun getUsers(): List<User> {
-        return userRepository.findAll()
+        return userHandler.getUsers()
     }
 
     @GetMapping("/{id}")
     fun getUserById(@PathVariable id: Long): User {
-        return userRepository.findById(id).get()
+        return userHandler.getUserById(id)
     }
 
     @PostMapping("")
     fun createUser(@RequestBody user: User): ResponseEntity<User> {
-        val newUser = userRepository.save(user)
+        val newUser = userHandler.createUser(user)
         return ResponseEntity(newUser,HttpStatus.CREATED)
     }
 
     @DeleteMapping("/{id}")
     fun deleteUser(@PathVariable id: Long): ResponseEntity<Unit> {
-        if(userRepository.existsById(id)){
-            userRepository.deleteById(id)
-            return ResponseEntity(Unit,HttpStatus.OK)
-        }
-        return ResponseEntity(Unit,HttpStatus.NOT_FOUND)
+        userHandler.deleteUser(id)
+        return ResponseEntity(HttpStatus.OK)
     }
 
 
