@@ -1,4 +1,4 @@
-package com.api.budgeteer
+package com.api.budgeteer.config
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

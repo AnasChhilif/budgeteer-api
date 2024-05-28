@@ -1,4 +1,4 @@
-package com.api.budgeteer.users
+package com.api.budgeteer.core.users
 
 interface UserHandler {
 
@@ -6,4 +6,5 @@ interface UserHandler {
     fun getUserById(id: Long): User
     fun createUser(user: User): User
     fun deleteUser(id: Long): Unit
+    fun updateUser(id: Long, user: User): User?
 }

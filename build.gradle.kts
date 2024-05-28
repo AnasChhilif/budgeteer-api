@@ -33,6 +33,8 @@ dependencies {
 	runtimeOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation ("org.postgresql:postgresql:42.3.3")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("org.hibernate.validator:hibernate-validator")
 }
 
 tasks.withType<KotlinCompile> {
