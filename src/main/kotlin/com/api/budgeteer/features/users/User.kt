@@ -1,6 +1,6 @@
-package com.api.budgeteer.core.users
+package com.api.budgeteer.features.users
 
-import com.api.budgeteer.core.Traceable
+import com.api.budgeteer.core.entities.TraceableEntity
 import jakarta.persistence.*
 import java.util.*
 
@@ -13,8 +13,5 @@ data class User(
     var firstName:String,
     var lastName: String,
     var email: String,
-    override var createdAt: Date? = null,
-    override var deletedAt : Date? = null,
-    override var updatedAt: Date? = null
 
-) : Traceable()
+) : TraceableEntity()

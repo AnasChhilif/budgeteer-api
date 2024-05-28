@@ -1,6 +1,5 @@
-package com.api.budgeteer.core.users
+package com.api.budgeteer.features.users
 
-import com.api.budgeteer.core.Traceable
 import org.springframework.stereotype.Service
 
 
@@ -31,7 +30,6 @@ class UserService(private val userRepository: UserRepository)  : UserHandler {
         val optionalUser = userRepository.findById(id)
         if (optionalUser.isPresent) {
             val existingUser = optionalUser.get()
-            existingUser.name = user.name
             existingUser.email = user.email
             return userRepository.save(existingUser)
         }

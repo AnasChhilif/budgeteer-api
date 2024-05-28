@@ -1,4 +1,4 @@
-package com.api.budgeteer.config
+package com.api.budgeteer
 
 
 import org.springframework.web.bind.annotation.GetMapping

@@ -1,4 +1,4 @@
-package com.api.budgeteer.core.users
+package com.api.budgeteer.features.users
 
 interface UserHandler {
 

@@ -1,6 +1,5 @@
-package com.api.budgeteer.core.users
+package com.api.budgeteer.features.users
 
-import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -22,7 +21,7 @@ class UserController(private val userHandler: UserHandler)  {
     }
 
     @PostMapping("")
-    fun createUser(@Valid @RequestBody userDTO: UserDTO): ResponseEntity<User> {
+    fun createUser( @RequestBody userDTO: User): ResponseEntity<User> {
         val newUser = userHandler.createUser(userDTO)
         return ResponseEntity(newUser,HttpStatus.CREATED)
     }
@@ -34,7 +33,7 @@ class UserController(private val userHandler: UserHandler)  {
     }
 
     @PutMapping("/{id}")
-    fun updateUser(@PathVariable id: Long,@Valid @RequestBody userDTO: UserDTO): ResponseEntity<User> {
+    fun updateUser(@PathVariable id: Long, @RequestBody userDTO: User): ResponseEntity<User> {
         val updatedUser = userHandler.updateUser(id, userDTO)
         return ResponseEntity(updatedUser,HttpStatus.OK)
     }
