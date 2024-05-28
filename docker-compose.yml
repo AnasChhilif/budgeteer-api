@@ -1,24 +1,24 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  kotlin-app:
-    image: budgeteer
-    container_name: budgeteer_api
+  budgeteer:
+    image: budgeteer:latest
+    container_name: budgeteer
     ports:
       - "8080:8080"
-    depends_on:
-      - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mydatabase
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/budgeteerdb
+      SPRING_DATASOURCE_USERNAME: budgeteeruser
+      SPRING_DATASOURCE_PASSWORD: budgeteerpassword
+    depends_on:
+      - postgres
 
-  db:
-    image: postgres:13
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: budgeteerdb
+      POSTGRES_USER: budgeteeruser
+      POSTGRES_PASSWORD: budgeteerpassword
     ports:
       - "5432:5432"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-
-volumes:
-  postgres-data:
