@@ -50,3 +50,15 @@ k
 ;src/main/kotlin/com/api/budgeteer/core/users/UserHandler.kt,9/6/96e3214efb84bb141c3ec9331dcfec26cea6ed3d
 g
 7src/main/kotlin/com/api/budgeteer/core/users/UserDTO.kt,5/3/53da1a59776d88855c3631ecdf6bb420dffdf088
+r
+Bsrc/main/kotlin/com/api/budgeteer/core/entities/TraceableEntity.kt,f/6/f67f17c04985026ad9ccedc053ad7335d3757f86
+h
+8src/main/kotlin/com/api/budgeteer/features/users/User.kt,0/8/087cf68799f22f5fa3c19cb4da6dd8e7861f1fcd
+r
+Bsrc/main/kotlin/com/api/budgeteer/features/users/UserController.kt,9/6/96e326633f6eea9305bdff8d29f2566891e27f92
+o
+?src/main/kotlin/com/api/budgeteer/features/users/UserHandler.kt,2/7/2792e9d954a5c84ebaf88d259b60ffde9b9126a3
+k
+;src/main/kotlin/com/api/budgeteer/features/users/UserDTO.kt,2/c/2c0559a26c065f0daef6d159145dea4d33911dc3
+o
+?src/main/kotlin/com/api/budgeteer/features/users/UserService.kt,2/6/2686beed232ed9b691eb8e7eed780b0242ce8a7a

@@ -1,5 +1,6 @@
 package com.api.budgeteer.features.users
 
+import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -9,9 +10,11 @@ import org.springframework.http.ResponseEntity
 @RequestMapping("/users")
 class UserController(private val userHandler: UserHandler)  {
 
+    private val logger = LoggerFactory.getLogger(UserController::class.java)
+
 
     @GetMapping("")
-    fun getUsers(): List<User> {
+    fun getUsers(): List<User>{
         return userHandler.getUsers()
     }
 
@@ -21,8 +24,9 @@ class UserController(private val userHandler: UserHandler)  {
     }
 
     @PostMapping("")
-    fun createUser( @RequestBody userDTO: User): ResponseEntity<User> {
-        val newUser = userHandler.createUser(userDTO)
+    fun createUser( @RequestBody userDTO: UserDTO): ResponseEntity<User> {
+        val  user = convertDTOToUser(userDTO)
+        val newUser = userHandler.createUser(user)
         return ResponseEntity(newUser,HttpStatus.CREATED)
     }
 
@@ -33,9 +37,15 @@ class UserController(private val userHandler: UserHandler)  {
     }
 
     @PutMapping("/{id}")
-    fun updateUser(@PathVariable id: Long, @RequestBody userDTO: User): ResponseEntity<User> {
-        val updatedUser = userHandler.updateUser(id, userDTO)
+    fun updateUser(@PathVariable id: Long, @RequestBody userDTO: UserDTO): ResponseEntity<User> {
+        val user = convertDTOToUser(userDTO)
+        val updatedUser = userHandler.updateUser(id, user)
         return ResponseEntity(updatedUser,HttpStatus.OK)
+    }
+
+
+    fun convertDTOToUser(userDTO: UserDTO): User {
+        return User(userDTO.firstName,userDTO.lastName, userDTO.email)
     }
 
 

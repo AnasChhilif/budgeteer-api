@@ -31,6 +31,9 @@ class UserService(private val userRepository: UserRepository)  : UserHandler {
         if (optionalUser.isPresent) {
             val existingUser = optionalUser.get()
             existingUser.email = user.email
+            existingUser.firstName = user.firstName
+            existingUser.lastName = user.lastName
+            existingUser.updatedAt = user.updatedAt
             return userRepository.save(existingUser)
         }
         return null
