@@ -10,9 +10,6 @@ import org.springframework.http.ResponseEntity
 @RequestMapping("/users")
 class UserController(private val userHandler: UserHandler)  {
 
-    private val logger = LoggerFactory.getLogger(UserController::class.java)
-
-
     @GetMapping("")
     fun getUsers(): List<User>{
         return userHandler.getUsers()
