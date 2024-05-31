@@ -1,4 +1,4 @@
-package com.api.budgeteer.features.residences
+package com.api.budgeteer.features.residence
 
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

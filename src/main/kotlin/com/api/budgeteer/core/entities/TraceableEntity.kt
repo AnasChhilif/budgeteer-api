@@ -16,11 +16,11 @@ abstract class TraceableEntity {
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
-    open var createdAt: LocalDateTime = LocalDateTime.now()
+    var createdAt: LocalDateTime = LocalDateTime.now()
 
     @Column(nullable = false)
     @LastModifiedDate
-    open var updatedAt: LocalDateTime = LocalDateTime.now()
+    var updatedAt: LocalDateTime = LocalDateTime.now()
 
-    open var deletedAt: LocalDateTime? = null
+    var deletedAt: LocalDateTime? = null
 }

@@ -1,4 +1,4 @@
-package com.api.budgeteer.features.residences
+package com.api.budgeteer.features.residence
 
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
