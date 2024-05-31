@@ -36,3 +36,13 @@ q
 Asrc/test/kotlin/com/api/budgeteer/controllers/users/UsersTests.kt,7/3/73671e54a22bc8672352e5c7c0f9beadc0e8ead9
 q
 Asrc/main/kotlin/com/api/budgeteer/features/users/UserDtoMapper.kt,6/e/6e1f1fc2c3fa2c59d77cfd1928a9651cbd165a0e
+{
+Ksrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceController.kt,6/1/6165683cffbac19fe5f88e93b4b551071353080b
+|
+Lsrc/main/kotlin/com/api/budgeteer/features/residences/ResidenceController.kt,1/8/181ec19520a792cd3806ec7a9690625d04ac9d62
+}
+Msrc/main/kotlin/com/api/budgeteer/features/residences/ResidencesController.kt,2/e/2eb8306d279389e1223a90d8b07ba2320d407479
+r
+Bsrc/main/kotlin/com/api/budgeteer/features/residences/Residence.kt,4/9/497498b081a397916bc89b2edb608c5e3fdaf42d
+u
+Esrc/main/kotlin/com/api/budgeteer/features/residences/ResidenceDTO.kt,4/a/4a669168530151c2067ae0bf965a4978be2660ad
