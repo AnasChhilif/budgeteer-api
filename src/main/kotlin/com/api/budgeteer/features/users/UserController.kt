@@ -1,6 +1,7 @@
 package com.api.budgeteer.features.users
 
 import jakarta.validation.Valid
+import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -10,14 +11,15 @@ import org.springframework.http.ResponseEntity
 @RequestMapping("/users")
 class UserController(private val userHandler: UserHandler)  {
 
+
     @GetMapping("")
     fun getUsers(): List<UserDTO> {
         return userHandler.getUsers().stream().map { toDTO(it) }.toList()
     }
 
     @GetMapping("/{id}")
-    fun getUserById(@PathVariable id: Long): User {
-        return userHandler.getUserById(id)
+    fun getUserById(@PathVariable id: Long): UserDTO {
+        return toDTO(userHandler.getUserById(id))
     }
 
     @PostMapping("")
