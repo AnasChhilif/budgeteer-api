@@ -1,4 +1,4 @@
-package com.api.budgeteer.users
+package com.api.budgeteer.features.users
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
