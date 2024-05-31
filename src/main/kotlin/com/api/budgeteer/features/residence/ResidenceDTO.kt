@@ -15,6 +15,6 @@ data class ResidenceDTO (
     val address: String,
 
     @field:NotBlank(message = "Residence users are required")
-    @field:Size(min = 2, message = "Residence must have at least two users")
+    @field:Size(min = 1, message = "Residence must have at least two users")
     val users: List<Long>
 )

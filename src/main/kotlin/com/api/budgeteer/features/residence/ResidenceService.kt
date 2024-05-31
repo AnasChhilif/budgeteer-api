@@ -3,7 +3,9 @@ package com.api.budgeteer.features.residence
 import com.api.budgeteer.features.residence.exceptions.ResidenceNotFoundException
 import com.api.budgeteer.features.users.UserHandler
 import com.api.budgeteer.features.users.exceptions.UserNotFoundException
+import org.springframework.stereotype.Service
 
+@Service
 class ResidenceService(private val residenceRepository: ResidenceRepository, private val userHandler: UserHandler) : ResidenceHandler {
     override fun getResidences(): List<Residence> {
         return residenceRepository.findAll()
@@ -11,6 +13,34 @@ class ResidenceService(private val residenceRepository: ResidenceRepository, pri
 
     override fun getResidenceById(id: Long): Residence {
         return residenceRepository.findById(id).orElseThrow { ResidenceNotFoundException(id) }
+    }
+
+    override fun addUserToResidence(userId: Long, residenceId: Long): Residence {
+        try {
+            val user = userHandler.getUserById(userId)
+            val residence = this.getResidenceById(residenceId)
+            val updatedResidence = residence.copy(users = residence.users + user)
+
+            return residenceRepository.save(updatedResidence)
+        } catch (e: UserNotFoundException) {
+            throw UserNotFoundException(userId)
+        } catch (e: ResidenceNotFoundException) {
+            throw ResidenceNotFoundException(residenceId)
+        }
+    }
+
+    override fun removeUserFromResidence(userId: Long, residenceId: Long): Residence {
+       try{
+            val user = userHandler.getUserById(userId)
+            val residence = this.getResidenceById(residenceId)
+            val updatedResidence = residence.copy(users = residence.users - user)
+
+            return residenceRepository.save(updatedResidence)
+        } catch (e: UserNotFoundException) {
+            throw UserNotFoundException(userId)
+        } catch (e: ResidenceNotFoundException) {
+            throw ResidenceNotFoundException(residenceId)
+       }
     }
 
     override fun createResidence(name: String, address: String, userId: Long): Residence {
