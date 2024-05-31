@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/residences")
-class ResidencesController {
+class ResidenceController {
 
 
 }

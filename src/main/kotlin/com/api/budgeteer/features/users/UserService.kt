@@ -1,5 +1,6 @@
 package com.api.budgeteer.features.users
 
+import com.api.budgeteer.features.users.exceptions.UserNotFoundException
 import org.springframework.stereotype.Service
 
 
@@ -12,7 +13,7 @@ class UserService(private val userRepository: UserRepository)  : UserHandler {
     }
 
     override fun getUserById(id: Long): User {
-        return userRepository.findById(id).get()
+        return userRepository.findById(id).orElseThrow{UserNotFoundException(id)}
     }
 
     override fun createUser(firstName: String, lastName: String, email: String): User {
