@@ -1,5 +1,6 @@
 package com.api.budgeteer.features.users
 
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -9,10 +10,9 @@ import org.springframework.http.ResponseEntity
 @RequestMapping("/users")
 class UserController(private val userHandler: UserHandler)  {
 
-
     @GetMapping("")
-    fun getUsers(): List<User> {
-        return userHandler.getUsers()
+    fun getUsers(): List<UserDTO> {
+        return userHandler.getUsers().stream().map { toDTO(it) }.toList()
     }
 
     @GetMapping("/{id}")
@@ -21,24 +21,25 @@ class UserController(private val userHandler: UserHandler)  {
     }
 
     @PostMapping("")
-    fun createUser( @RequestBody userDTO: User): ResponseEntity<User> {
-        val newUser = userHandler.createUser(userDTO)
-        return ResponseEntity(newUser,HttpStatus.CREATED)
+    fun createUser( @RequestBody @Valid userDTO: UserDTO): ResponseEntity<UserDTO> {
+        val (_, firstName, lastName, email) = userDTO
+        val newUser = userHandler.createUser(firstName, lastName, email)
+
+        return ResponseEntity(toDTO(newUser),HttpStatus.CREATED)
     }
 
     @DeleteMapping("/{id}")
     fun deleteUser(@PathVariable id: Long): ResponseEntity<Unit> {
         userHandler.deleteUser(id)
+
         return ResponseEntity(HttpStatus.OK)
     }
 
     @PutMapping("/{id}")
-    fun updateUser(@PathVariable id: Long, @RequestBody userDTO: User): ResponseEntity<User> {
-        val updatedUser = userHandler.updateUser(id, userDTO)
-        return ResponseEntity(updatedUser,HttpStatus.OK)
+    fun updateUser(@PathVariable id: Long, @RequestBody @Valid userDTO: UserDTO): ResponseEntity<UserDTO> {
+        val user = toEntity(userDTO)
+        val updatedUser = userHandler.updateUser(id, user)
+
+        return ResponseEntity(toDTO(updatedUser) ,HttpStatus.OK)
     }
-
-
-
-
 }

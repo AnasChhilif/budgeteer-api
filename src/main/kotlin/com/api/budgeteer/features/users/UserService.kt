@@ -15,7 +15,8 @@ class UserService(private val userRepository: UserRepository)  : UserHandler {
         return userRepository.findById(id).get()
     }
 
-    override fun createUser(user: User): User {
+    override fun createUser(firstName: String, lastName: String, email: String): User {
+        val user = User(0, firstName, lastName, email)
         val userCreated = userRepository.save(user)
         return userRepository.save(userCreated)
     }

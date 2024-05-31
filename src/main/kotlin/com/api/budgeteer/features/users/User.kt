@@ -12,6 +12,8 @@ data class User(
     val id: Long,
     var firstName:String,
     var lastName: String,
+
+    @Column(unique = true)
     var email: String,
 
 ) : TraceableEntity()
