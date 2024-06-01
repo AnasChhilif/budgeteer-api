@@ -1,6 +1,6 @@
 package com.api.budgeteer.features.users
 
-import org.junit.jupiter.api.Assertions.*
+import com.api.budgeteer.features.users.controllers.UserController
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
