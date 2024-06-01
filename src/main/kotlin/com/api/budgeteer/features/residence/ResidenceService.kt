@@ -2,6 +2,7 @@ package com.api.budgeteer.features.residence
 
 import com.api.budgeteer.features.residence.exceptions.ResidenceNotFoundException
 import com.api.budgeteer.features.users.UserHandler
+import com.api.budgeteer.features.users.exceptions.UserEmailNotFoundException
 import com.api.budgeteer.features.users.exceptions.UserNotFoundException
 import org.springframework.stereotype.Service
 
@@ -15,29 +16,29 @@ class ResidenceService(private val residenceRepository: ResidenceRepository, pri
         return residenceRepository.findById(id).orElseThrow { ResidenceNotFoundException(id) }
     }
 
-    override fun addUserToResidence(userId: Long, residenceId: Long): Residence {
+    override fun addUserToResidence(userEmail: String, residenceId: Long): Residence {
         try {
-            val user = userHandler.getUserById(userId)
+            val user = userHandler.getUserByEmail(userEmail)
             val residence = this.getResidenceById(residenceId)
             val updatedResidence = residence.copy(users = residence.users + user)
 
             return residenceRepository.save(updatedResidence)
-        } catch (e: UserNotFoundException) {
-            throw UserNotFoundException(userId)
+        } catch (e: UserEmailNotFoundException) {
+            throw UserEmailNotFoundException(userEmail)
         } catch (e: ResidenceNotFoundException) {
             throw ResidenceNotFoundException(residenceId)
         }
     }
 
-    override fun removeUserFromResidence(userId: Long, residenceId: Long): Residence {
+    override fun removeUserFromResidence(userEmail: String, residenceId: Long): Residence {
        try{
-            val user = userHandler.getUserById(userId)
+            val user = userHandler.getUserByEmail(userEmail)
             val residence = this.getResidenceById(residenceId)
             val updatedResidence = residence.copy(users = residence.users - user)
 
             return residenceRepository.save(updatedResidence)
-        } catch (e: UserNotFoundException) {
-            throw UserNotFoundException(userId)
+        } catch (e: UserEmailNotFoundException) {
+            throw UserEmailNotFoundException(userEmail)
         } catch (e: ResidenceNotFoundException) {
             throw ResidenceNotFoundException(residenceId)
        }
