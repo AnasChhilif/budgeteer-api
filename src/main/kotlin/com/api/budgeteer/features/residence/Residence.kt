@@ -17,7 +17,7 @@ data class Residence (
 
     val address: String,
 
-    @OneToMany(mappedBy = "residence")
+    @OneToMany(mappedBy = "residence", fetch = FetchType.EAGER)
     val users: List<User>,
 
 ) : TraceableEntity(){
