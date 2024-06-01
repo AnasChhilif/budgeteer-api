@@ -25,4 +25,8 @@ data class User(
     ) : TraceableEntity(){
     constructor(firstName: String, lastName: String, email: String) : this(0, firstName, lastName, email,null)
     constructor() : this(0, "userFirstName", "userLastName", "userEmail@gmail.com",null)
+
+    override fun toString(): String {
+        return "User(id=$id, firstName='$firstName', lastName='$lastName', email='$email')"
+    }
 }

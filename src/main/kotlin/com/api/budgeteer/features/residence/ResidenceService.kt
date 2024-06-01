@@ -21,6 +21,7 @@ class ResidenceService(private val residenceRepository: ResidenceRepository, pri
             val user = userHandler.getUserByEmail(userEmail)
             val residence = this.getResidenceById(residenceId)
             val updatedResidence = residence.copy(users = residence.users + user)
+            user.residence = updatedResidence
 
             return residenceRepository.save(updatedResidence)
         } catch (e: UserEmailNotFoundException) {
@@ -35,6 +36,7 @@ class ResidenceService(private val residenceRepository: ResidenceRepository, pri
             val user = userHandler.getUserByEmail(userEmail)
             val residence = this.getResidenceById(residenceId)
             val updatedResidence = residence.copy(users = residence.users - user)
+            user.residence = null
 
             return residenceRepository.save(updatedResidence)
         } catch (e: UserEmailNotFoundException) {
@@ -47,8 +49,10 @@ class ResidenceService(private val residenceRepository: ResidenceRepository, pri
     override fun createResidence(name: String, address: String, userId: Long): Residence {
         try {
             val user = userHandler.getUserById(userId)
-            val residence = Residence(name, address, listOf(user))
-            return residenceRepository.save(residence)
+            val residence = Residence(name, address, listOf()) // create an empty residence first
+            residence.users = listOf(user) // then add the user to the residence
+            user.residence = residence // and set the residence for the user
+            return residenceRepository.save(residence) // save the residence with the updated user
         } catch (e: UserNotFoundException) {
             throw UserNotFoundException(userId)
         }

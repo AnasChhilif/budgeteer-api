@@ -43,7 +43,7 @@ class ResidenceController(private val residenceHandler: ResidenceHandler) {
         return com.api.budgeteer.features.residence.toDTO(residenceHandler.addUserToResidence(userEmail, residenceId))
     }
 
-    @DeleteMapping("/{residenceId}/users/{userId}")
+    @DeleteMapping("/{residenceId}/users")
     fun removeUserFromResidence(@PathVariable residenceId: Long, @RequestParam userEmail: String ): ResidenceDTO {
         return com.api.budgeteer.features.residence.toDTO(residenceHandler.removeUserFromResidence(userEmail, residenceId))
     }
