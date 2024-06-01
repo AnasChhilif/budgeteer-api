@@ -29,32 +29,32 @@ class ResidenceController(private val residenceHandler: ResidenceHandler) {
     }
 
     @GetMapping("/{id}")
-    fun getResidenceById(id: Long): ResidenceDTO {
+    fun getResidenceById(@PathVariable id: Long): ResidenceDTO {
         return com.api.budgeteer.features.residence.toDTO(residenceHandler.getResidenceById(id))
     }
 
     @GetMapping("/{id}/users")
-    fun getUsersByResidenceId(id: Long): List<UserDTO> {
+    fun getUsersByResidenceId(@PathVariable id: Long): List<UserDTO> {
         return residenceHandler.getResidenceById(id).users.map { toDTO(it) }
     }
 
-    @PostMapping("/{residenceId}/users/{userEmail}")
-    fun addUserToResidence(@PathVariable userEmail: String, @PathVariable residenceId: Long): ResidenceDTO {
+    @PostMapping("/{residenceId}/users")
+    fun addUserToResidence(@PathVariable residenceId: Long, @RequestParam userEmail: String): ResidenceDTO {
         return com.api.budgeteer.features.residence.toDTO(residenceHandler.addUserToResidence(userEmail, residenceId))
     }
 
-    @DeleteMapping("/{id}/users")
-    fun removeUserFromResidence(userEmail: String, residenceId: Long): ResidenceDTO {
+    @DeleteMapping("/{residenceId}/users/{userId}")
+    fun removeUserFromResidence(@PathVariable residenceId: Long, @RequestParam userEmail: String ): ResidenceDTO {
         return com.api.budgeteer.features.residence.toDTO(residenceHandler.removeUserFromResidence(userEmail, residenceId))
     }
 
     @DeleteMapping("/{id}")
-    fun deleteResidence(id: Long) {
+    fun deleteResidence(@PathVariable id: Long) {
         residenceHandler.deleteResidence(id)
     }
 
-    @PostMapping("/{id}")
-    fun updateResidence(id: Long, @RequestBody residenceDTO: ResidenceDTO): ResidenceDTO {
+    @PutMapping("/{id}")
+    fun updateResidence(@PathVariable id: Long, @RequestBody residenceDTO: ResidenceDTO): ResidenceDTO {
         return com.api.budgeteer.features.residence.toDTO(residenceHandler.updateResidence(id, toEntity(residenceDTO)))
     }
 

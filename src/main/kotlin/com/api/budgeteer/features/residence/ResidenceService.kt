@@ -65,7 +65,6 @@ class ResidenceService(private val residenceRepository: ResidenceRepository, pri
             address = residence.address,
             users = residence.users
         )
-
         return residenceRepository.save(updatedResidence)
     }
 }
