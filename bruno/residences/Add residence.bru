@@ -5,7 +5,15 @@ meta {
 }
 
 post {
-  url: http://localhost:8080/resicences
-  body: none
+  url: http://localhost:8080/residences
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "name": "test_residence",
+    "address": "24 rue lhrba",
+    "users": "[1]"
+  }
 }
