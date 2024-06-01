@@ -46,3 +46,25 @@ r
 Bsrc/main/kotlin/com/api/budgeteer/features/residences/Residence.kt,4/9/497498b081a397916bc89b2edb608c5e3fdaf42d
 u
 Esrc/main/kotlin/com/api/budgeteer/features/residences/ResidenceDTO.kt,4/a/4a669168530151c2067ae0bf965a4978be2660ad
+@
+bruno/bruno.json,f/2/f2d53a3457a3e05a84b009dd22f35990d2a361e0
+H
+bruno/users/Add user.bru,d/2/d2ae4a2154e0c16345a6a1c767ce2ec54fa6debe
+x
+Hsrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceHandler.kt,c/9/c95258868b44b5509a4832b71023bac7aaa80a4d
+t
+Dsrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceDTO.kt,9/2/928e28f27f75ed5e27e571e0556d59cb49d05218
+{
+Ksrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceRepository.kt,d/9/d99522deb8a7696dce3adc71a168fa3d41ac0591
+x
+Hsrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceService.kt,0/6/06610a4a8e069d03b03324cc9567625aed7208f6
+ç
+]src/main/kotlin/com/api/budgeteer/features/residence/exceptions/ResidenceNotFoundException.kt,4/d/4d9a33d53d3d88f07575ef898e1e150e3d593e15
+q
+Asrc/main/kotlin/com/api/budgeteer/features/residence/Residence.kt,8/9/899acf2e2b7ef355682f88c20a77dd864cfd5f3f
+z
+Jsrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceDTOMapper.kt,3/1/31a787e0aa6e31e9189d31456be9263e058d96a7
+z
+Jsrc/test/kotlin/com/api/budgeteer/controllers/residences/ResidenceTests.kt,b/c/bc62508d2d9c98adc6db6f5816d62035eda5244a
+q
+Asrc/main/kotlin/com/api/budgeteer/features/users/UserDTOMapper.kt,3/5/35d921b858eea31a1a6b8cb685fe906fb1e01646

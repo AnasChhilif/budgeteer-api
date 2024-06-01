@@ -20,32 +20,32 @@ class ResidenceController(private val residenceHandler: ResidenceHandler) {
     }
 
     @GetMapping("/{id}")
-    fun getResidenceById(id: Long): ResidenceDTO {
+    fun getResidenceById(@PathVariable id: Long): ResidenceDTO {
         return toDTO(residenceHandler.getResidenceById(id))
     }
 
     @GetMapping("/{id}/users")
-    fun getUsersByResidenceId(id: Long): List<UserDTO> {
+    fun getUsersByResidenceId(@PathVariable id: Long): List<UserDTO> {
         return residenceHandler.getResidenceById(id).users.map { toDTO(it) }
     }
 
-    @PostMapping("/{id}/users")
-    fun addUserToResidence(userId: Long, residenceId: Long): ResidenceDTO {
+    @PostMapping("/{residenceId}/users")
+    fun addUserToResidence(userId: Long, @PathVariable residenceId: Long): ResidenceDTO {
         return toDTO(residenceHandler.addUserToResidence(userId, residenceId))
     }
 
-    @DeleteMapping("/{id}/users")
-    fun removeUserFromResidence(userId: Long, residenceId: Long): ResidenceDTO {
+    @DeleteMapping("/{residenceId}/users/{userId}")
+    fun removeUserFromResidence(@PathVariable userId: Long, @PathVariable residenceId: Long): ResidenceDTO {
         return toDTO(residenceHandler.removeUserFromResidence(userId, residenceId))
     }
 
     @DeleteMapping("/{id}")
-    fun deleteResidence(id: Long) {
+    fun deleteResidence(@PathVariable id: Long) {
         residenceHandler.deleteResidence(id)
     }
 
-    @PostMapping("/{id}")
-    fun updateResidence(id: Long, @RequestBody residenceDTO: ResidenceDTO): ResidenceDTO {
+    @PutMapping("/{id}")
+    fun updateResidence(@PathVariable id: Long, @RequestBody residenceDTO: ResidenceDTO): ResidenceDTO {
         return toDTO(residenceHandler.updateResidence(id, toEntity(residenceDTO)))
     }
 
