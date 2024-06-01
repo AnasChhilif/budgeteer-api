@@ -68,3 +68,7 @@ z
 Jsrc/test/kotlin/com/api/budgeteer/controllers/residences/ResidenceTests.kt,b/c/bc62508d2d9c98adc6db6f5816d62035eda5244a
 q
 Asrc/main/kotlin/com/api/budgeteer/features/users/UserDTOMapper.kt,3/5/35d921b858eea31a1a6b8cb685fe906fb1e01646
+
+Osrc/main/kotlin/com/api/budgeteer/features/residence/dtos/createResidenceDTO.kt,1/7/17f3ac4a579f41efab2521e9dc6481b24e81d138
+y
+Isrc/main/kotlin/com/api/budgeteer/features/residence/dtos/ResidenceDTO.kt,e/2/e2cd0ecbbbe4716628c1e51b503f59d96674ab41

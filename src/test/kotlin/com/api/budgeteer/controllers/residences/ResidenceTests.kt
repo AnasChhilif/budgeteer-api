@@ -1,6 +1,7 @@
 package com.api.budgeteer.controllers.residences
 
 import com.api.budgeteer.features.residence.*
+import com.api.budgeteer.features.residence.dtos.ResidenceDTO
 import com.api.budgeteer.features.users.User
 import com.api.budgeteer.features.users.UserHandler
 import com.fasterxml.jackson.databind.ObjectMapper
