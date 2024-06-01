@@ -1,6 +1,7 @@
 package com.api.budgeteer.features.residence
 
-import com.api.budgeteer.features.users.User
+import com.api.budgeteer.features.residence.dtos.ResidenceDTO
+import com.api.budgeteer.features.residence.dtos.createResidenceDTO
 import com.api.budgeteer.features.users.UserDTO
 import com.api.budgeteer.features.users.toDTO
 import org.springframework.web.bind.annotation.*
@@ -15,8 +16,8 @@ class ResidenceController(private val residenceHandler: ResidenceHandler) {
     }
 
     @PostMapping()
-    fun createResidence(@RequestBody residenceDTO: ResidenceDTO): ResidenceDTO {
-        return toDTO(residenceHandler.createResidence(residenceDTO.name, residenceDTO.address, residenceDTO.users.first()))
+    fun createResidence(@RequestBody createResidenceDTO: createResidenceDTO): ResidenceDTO {
+        return toDTO(residenceHandler.createResidence(createResidenceDTO.name, createResidenceDTO.address, createResidenceDTO.user))
     }
 
     @GetMapping("/{id}")
