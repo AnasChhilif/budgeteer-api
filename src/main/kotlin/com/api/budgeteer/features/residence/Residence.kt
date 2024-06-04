@@ -17,7 +17,7 @@ data class Residence (
 
     val address: String,
 
-    @OneToMany(mappedBy = "residence", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "residence", fetch = FetchType.EAGER,cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     var users: List<User>,
 
 
