@@ -26,6 +26,7 @@ FROM openjdk:17-slim
 WORKDIR /app
 RUN addgroup dockergroup; adduser --ingroup dockergroup --disabled-password --system --shell /bin/false dockeruser
 
+RUN mkdir -p /app/logs && chown -R dockeruser:dockergroup /app/logs
 # Copy the built application from the previous stage
 COPY --from=build /app/build/libs/*.jar /app/
 

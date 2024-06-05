@@ -1,0 +1,19 @@
+meta {
+  name: Add residence
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/residences
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "test_residence",
+    "address": "24 rue lhrba",
+    "user": "1"
+  }
+}

@@ -1,7 +1,10 @@
-package com.api.budgeteer.features.users
+package com.api.budgeteer.features.users.controllers
 
+import com.api.budgeteer.features.users.UserDTO
+import com.api.budgeteer.features.users.UserHandler
+import com.api.budgeteer.features.users.toDTO
+import com.api.budgeteer.features.users.toEntity
 import jakarta.validation.Valid
-import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

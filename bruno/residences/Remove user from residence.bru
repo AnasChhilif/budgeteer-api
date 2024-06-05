@@ -1,0 +1,15 @@
+meta {
+  name: Remove user from residence
+  type: http
+  seq: 4
+}
+
+delete {
+  url: http://localhost:8080/residences/1/users?userEmail=test@test.com
+  body: none
+  auth: none
+}
+
+query {
+  userEmail: test@test.com
+}
