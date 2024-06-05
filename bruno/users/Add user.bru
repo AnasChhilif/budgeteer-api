@@ -1,0 +1,25 @@
+meta {
+  name: Add user
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "firstName": "test",
+    "lastName": "test",
+    "email": "tester@test.com"
+  }
+}
+
+body:multipart-form {
+  firstName: test
+  lastName: test
+  email: test.test@test.com
+}
