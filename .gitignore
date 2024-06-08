@@ -3,5 +3,5 @@ build/
 .idea/
 .idea/copilot/
 out/
-build/*
 logs/
+build/*

@@ -72,3 +72,10 @@ Asrc/main/kotlin/com/api/budgeteer/features/users/UserDTOMapper.kt,3/5/35d921b8
 Osrc/main/kotlin/com/api/budgeteer/features/residence/dtos/createResidenceDTO.kt,1/7/17f3ac4a579f41efab2521e9dc6481b24e81d138
 y
 Isrc/main/kotlin/com/api/budgeteer/features/residence/dtos/ResidenceDTO.kt,e/2/e2cd0ecbbbe4716628c1e51b503f59d96674ab41
+‡
+Wsrc/main/kotlin/com/api/budgeteer/features/residence/controllers/ResidenceController.kt,a/5/a5c25b9191e381e2c90856d1fd4c648e402192c1
+D
+logs/tcfs-logger.log,7/5/75a817c9ef4fa82a67549306a87ef1058f087fa3
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302

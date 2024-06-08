@@ -49,14 +49,17 @@ class ResidenceService(private val residenceRepository: ResidenceRepository, pri
     override fun createResidence(name: String, address: String, userId: Long): Residence {
         try {
             val user = userHandler.getUserById(userId)
-            val residence = Residence(name, address, listOf()) // create an empty residence first
-            residence.users = listOf(user) // then add the user to the residence
-            user.residence = residence // and set the residence for the user
+            val residence = Residence(name, address, listOf(user)) // create an empty residence first
+            if (residence.users.isEmpty()) {
+                throw UserNotFoundException(userId)
+            }
+            user.residence = residence // set the residence to the user
             return residenceRepository.save(residence) // save the residence with the updated user
         } catch (e: UserNotFoundException) {
             throw UserNotFoundException(userId)
         }
     }
+
 
     override fun deleteResidence(id: Long) {
         residenceRepository.deleteById(id)
