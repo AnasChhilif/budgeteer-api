@@ -1,7 +1,6 @@
 package com.api.budgeteer.features.monthlydata
 
 import com.api.budgeteer.features.monthlydata.DTOs.DebtDTO
-import com.api.budgeteer.features.monthlydata.DTOs.DebtListDTO
 import com.api.budgeteer.features.monthlydata.exceptions.MonthlyDataNotFoundException
 import com.api.budgeteer.features.residence.Residence
 import com.api.budgeteer.features.residence.ResidenceHandler
@@ -61,7 +60,6 @@ class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepositor
 
     override fun getCurrentUserDebt(userId: Long): List<DebtDTO> {
         val residence = this.residenceHandler.getResidenceByUserId(userId)
-        val monthlyData = this.getCurrentMonthlyDataByUser(userId).orElseThrow{ MonthlyDataNotFoundException(userId) }
         val debtOwner = this.userHandler.getUserById(userId)
 
         val debtList = mutableListOf<DebtDTO>()
