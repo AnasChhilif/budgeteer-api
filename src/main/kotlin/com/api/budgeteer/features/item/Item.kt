@@ -13,7 +13,7 @@ data class Item (
     val price: Double,
     val quantity: Int,
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     val user: User
 ) : TraceableEntity(){

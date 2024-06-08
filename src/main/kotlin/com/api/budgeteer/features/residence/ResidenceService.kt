@@ -16,6 +16,10 @@ class ResidenceService(private val residenceRepository: ResidenceRepository, pri
         return residenceRepository.findById(id).orElseThrow { ResidenceNotFoundException(id) }
     }
 
+    override fun getResidenceByUserId(userId: Long): Residence {
+        return residenceRepository.findByUserId(userId).orElseThrow { ResidenceNotFoundException() }
+    }
+
     override fun addUserToResidence(userEmail: String, residenceId: Long): Residence {
         try {
             val user = userHandler.getUserByEmail(userEmail)

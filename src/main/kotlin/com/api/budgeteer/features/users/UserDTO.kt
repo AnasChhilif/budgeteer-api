@@ -17,4 +17,6 @@ data class UserDTO(
     @field:NotBlank(message = "Email is required")
     @field:Email(message = "Invalid email format")
     val email: String,
+
+    val residenceId: Long? = null
 )
