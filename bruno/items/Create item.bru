@@ -1,0 +1,20 @@
+meta {
+  name: Create item
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/items
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "9r3a dzit",
+    "price": 20,
+    "quantity": 0,
+    "userId" : 3
+  }
+}
