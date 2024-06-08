@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service
 
 @Service
 class UserService(private val userRepository: UserRepository)  : UserHandler {
-
-
     override fun getUsers(): List<User> {
         return userRepository.findAll()
     }
