@@ -1,5 +1,7 @@
 package com.api.budgeteer.features.monthlydata
 
+import com.api.budgeteer.features.monthlydata.DTOs.DebtDTO
+import com.api.budgeteer.features.monthlydata.DTOs.DebtListDTO
 import com.api.budgeteer.features.monthlydata.exceptions.MonthlyDataNotFoundException
 import com.api.budgeteer.features.residence.Residence
 import com.api.budgeteer.features.residence.ResidenceHandler
@@ -55,6 +57,25 @@ class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepositor
 
     override fun getCurrentMonthlyDataByUser(userId: Long) : Optional<MonthlyData> {
         return this.monthlyDataRepository.findCurrentMonthlyDataByUserId(userId)
+    }
+
+    override fun getCurrentUserDebt(userId: Long): List<DebtDTO> {
+        val residence = this.residenceHandler.getResidenceByUserId(userId)
+        val monthlyData = this.getCurrentMonthlyDataByUser(userId).orElseThrow{ MonthlyDataNotFoundException(userId) }
+        val debtOwner = this.userHandler.getUserById(userId)
+
+        val debtList = mutableListOf<DebtDTO>()
+
+        for (user in residence.users) {
+            if (user.id != userId) {
+                val userMonthlyData = this.getCurrentMonthlyDataByUser(user.id).orElseThrow{ MonthlyDataNotFoundException(user.id) }
+                val debt = userMonthlyData.amountSpent - monthlyData.amountSpent
+                val debtDTO = DebtDTO(com.api.budgeteer.features.users.toDTO(debtOwner), com.api.budgeteer.features.users.toDTO(user), debt)
+                debtList.add(debtDTO)
+            }
+        }
+
+        return debtList
     }
 
     override fun updateMonthlyData(id: Long, newAmount: Double): MonthlyData {

@@ -1,4 +1,4 @@
-package com.api.budgeteer.features.monthlydata
+package com.api.budgeteer.features.monthlydata.DTOs
 
 data class MonthlyDataDTO(
         val id: Long,

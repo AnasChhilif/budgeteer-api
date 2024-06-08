@@ -1,5 +1,7 @@
 package com.api.budgeteer.features.monthlydata
 
+import com.api.budgeteer.features.monthlydata.DTOs.MonthlyDataDTO
+
 fun toDTO(monthlyData: MonthlyData): MonthlyDataDTO {
     return MonthlyDataDTO(
             id = monthlyData.id,

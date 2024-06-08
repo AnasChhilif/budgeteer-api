@@ -1,7 +1,7 @@
 package com.api.budgeteer.features.monthlydata.controllers
 
-import com.api.budgeteer.features.monthlydata.MonthlyData
-import com.api.budgeteer.features.monthlydata.MonthlyDataDTO
+import com.api.budgeteer.features.monthlydata.DTOs.DebtDTO
+import com.api.budgeteer.features.monthlydata.DTOs.MonthlyDataDTO
 import com.api.budgeteer.features.monthlydata.MonthlyDataHandler
 import com.api.budgeteer.features.monthlydata.toDTO
 import org.springframework.web.bind.annotation.GetMapping
@@ -36,6 +36,12 @@ class MonthlyDataController(private val monthlyDataHandler: MonthlyDataHandler) 
     @GetMapping("/user/{userId}/current")
     fun getCurrentMonthlyDataByUser(@PathVariable userId: Long): MonthlyDataDTO {
         return toDTO(monthlyDataHandler.getCurrentMonthlyDataByUser(userId).get())
+    }
+
+
+    @GetMapping("/user/{userId}/debt")
+    fun getCurrentUserDebt(@PathVariable userId: Long): List<DebtDTO> {
+        return monthlyDataHandler.getCurrentUserDebt(userId)
     }
 
 }
