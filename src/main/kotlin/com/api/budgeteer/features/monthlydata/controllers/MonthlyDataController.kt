@@ -37,5 +37,5 @@ class MonthlyDataController(private val monthlyDataHandler: MonthlyDataHandler) 
     fun getCurrentMonthlyDataByUser(@PathVariable userId: Long): MonthlyDataDTO {
         return toDTO(monthlyDataHandler.getCurrentMonthlyDataByUser(userId).get())
     }
-    
+
 }

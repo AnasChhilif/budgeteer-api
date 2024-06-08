@@ -57,9 +57,9 @@ class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepositor
         return this.monthlyDataRepository.findCurrentMonthlyDataByUserId(userId)
     }
 
-    override fun updateMonthlyData(id: Long, newPrice: Double): MonthlyData {
+    override fun updateMonthlyData(id: Long, newAmount: Double): MonthlyData {
         val monthlyData = monthlyDataRepository.findById(id).orElseThrow{ MonthlyDataNotFoundException(id) }
-        monthlyData.amountSpent = newPrice
+        monthlyData.amountSpent = newAmount
         monthlyData.updatedAt = LocalDateTime.now()
 
         return monthlyDataRepository.save(monthlyData)

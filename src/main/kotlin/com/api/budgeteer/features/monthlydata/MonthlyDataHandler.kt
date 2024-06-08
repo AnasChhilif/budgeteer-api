@@ -9,6 +9,6 @@ interface MonthlyDataHandler {
     fun getMonthlyDataByUser(userId: Long): List<MonthlyData>
     fun getMonthlyDataByResidence(residenceId: Long): List<MonthlyData>
     fun getCurrentMonthlyDataByUser(userId: Long): Optional<MonthlyData>
-    fun updateMonthlyData(id: Long, newPrice: Double): MonthlyData
+    fun updateMonthlyData(id: Long, newAmount: Double): MonthlyData
     fun deleteMonthlyData(id: Long)
 }
