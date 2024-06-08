@@ -17,7 +17,7 @@ data class Item (
     @JoinColumn(name = "user_id")
     val user: User
 ) : TraceableEntity(){
-    constructor(name: String, price: Double, quantity: Int) : this(0, name, price, quantity, User())
+    constructor(name: String, price: Double, quantity: Int, user: User) : this(0, name, price, quantity, user)
     constructor() : this(0, "itemName", 0.0, 0, User())
 
     override fun toString(): String {

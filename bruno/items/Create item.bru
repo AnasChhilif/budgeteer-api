@@ -1,0 +1,20 @@
+meta {
+  name: Create item
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/items
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "mirendina dyal drhm",
+    "price": 1,
+    "quantity": 5,
+    "userId" : 1
+  }
+}
