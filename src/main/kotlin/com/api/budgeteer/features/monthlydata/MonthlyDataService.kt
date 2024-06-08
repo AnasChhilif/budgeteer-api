@@ -64,9 +64,6 @@ class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepositor
         val monthlyData = this.getCurrentMonthlyDataByUser(userId).orElseThrow{ MonthlyDataNotFoundException(userId) }
         val debtList = mutableListOf<DebtDTO>()
         val totalUsers = residence.users.size
-        val averageSpent = residence.users.sumOf {
-            this.getCurrentMonthlyDataByUser(it.id).orElseThrow { MonthlyDataNotFoundException(it.id) }.amountSpent
-        } / totalUsers
 
         for (user in residence.users) {
             if (user.id != userId) {
