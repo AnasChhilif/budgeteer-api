@@ -9,12 +9,14 @@ import com.api.budgeteer.features.users.User
 import com.api.budgeteer.features.users.UserHandler
 import com.api.budgeteer.features.users.exceptions.UserNotFoundException
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.temporal.TemporalAdjusters
 import java.util.*
 
 @Service
+@Transactional
 class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepository, private val userHandler: UserHandler, private val residenceHandler: ResidenceHandler): MonthlyDataHandler{
     override fun createMonthlyData(userId: Long, residenceId: Long, initialSpending: Double): MonthlyData {
         val user: User

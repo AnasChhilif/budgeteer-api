@@ -3,9 +3,11 @@ package com.api.budgeteer.features.users
 import com.api.budgeteer.features.users.exceptions.UserEmailNotFoundException
 import com.api.budgeteer.features.users.exceptions.UserNotFoundException
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 
 @Service
+@Transactional
 class UserService(private val userRepository: UserRepository)  : UserHandler {
     override fun getUsers(): List<User> {
         return userRepository.findAll()
@@ -19,10 +21,10 @@ class UserService(private val userRepository: UserRepository)  : UserHandler {
         return userRepository.findByEmail(email) ?: throw UserEmailNotFoundException(email)
     }
 
+    @Transactional()
     override fun createUser(firstName: String, lastName: String, email: String): User {
         val user = User(0, firstName, lastName, email)
-        val userCreated = userRepository.save(user)
-        return userRepository.save(userCreated)
+        return userRepository.save(user)
     }
 
     override fun deleteUser(id: Long) {
