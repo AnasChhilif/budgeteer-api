@@ -4,8 +4,10 @@ import com.api.budgeteer.features.item.exceptions.ItemNotFoundException
 import com.api.budgeteer.features.monthlydata.MonthlyDataHandler
 import com.api.budgeteer.features.users.UserHandler
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class ItemService(private val itemRepository: ItemRepository, private val userHandler: UserHandler, private val monthlyDataHandler: MonthlyDataHandler)  : ItemHandler{
 
     override fun createItem(name: String, price: Double, quantity: Int, userId: Long): Item {

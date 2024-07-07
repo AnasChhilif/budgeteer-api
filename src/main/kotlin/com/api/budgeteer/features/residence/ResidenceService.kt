@@ -5,8 +5,10 @@ import com.api.budgeteer.features.users.UserHandler
 import com.api.budgeteer.features.users.exceptions.UserEmailNotFoundException
 import com.api.budgeteer.features.users.exceptions.UserNotFoundException
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class ResidenceService(private val residenceRepository: ResidenceRepository, private val userHandler: UserHandler) : ResidenceHandler {
     override fun getResidences(): List<Residence> {
         return residenceRepository.findAll()
