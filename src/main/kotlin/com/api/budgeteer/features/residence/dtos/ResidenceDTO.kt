@@ -1,5 +1,6 @@
 package com.api.budgeteer.features.residence.dtos
 
+import com.api.budgeteer.features.residence.Residence
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 import org.hibernate.validator.constraints.UniqueElements
@@ -17,4 +18,10 @@ data class ResidenceDTO (
     @field:NotBlank(message = "Residence users are required")
     @field:Size(min = 1, message = "Residence must have at least two users")
     val users: List<Long>
-)
+){
+    fun toEntity() = Residence(
+        id = this.id,
+        name = this.name,
+        address = this.address,
+    )
+}
