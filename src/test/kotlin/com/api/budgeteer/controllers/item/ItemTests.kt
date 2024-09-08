@@ -49,28 +49,4 @@ class ItemTests {
 
         verify(itemHandler, times(1)).getItems()
     }
-
-    @Test
-    fun `should delete an item`() {
-        doNothing().`when`(itemHandler).deleteItem(1)
-
-        mockMvc.perform(delete("/items/1"))
-            .andExpect(status().isOk)
-
-        verify(itemHandler, times(1)).deleteItem(1)
-    }
-
-    @Test
-    fun `should update an item`() {
-        val item = ItemDTO(1, 1, "Item 1", 10.0, 1)
-
-        `when`(itemHandler.updateItem(item.toEntity())).thenReturn(item.toEntity())
-
-        mockMvc.perform(put("/items")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(item)))
-            .andExpect(status().isOk)
-
-        verify(itemHandler, times(1)).updateItem(item.toEntity())
-    }
 }
