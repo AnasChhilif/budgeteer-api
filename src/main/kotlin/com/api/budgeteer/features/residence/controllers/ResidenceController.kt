@@ -3,9 +3,7 @@ package com.api.budgeteer.features.residence.controllers
 import com.api.budgeteer.features.residence.ResidenceHandler
 import com.api.budgeteer.features.residence.dtos.ResidenceDTO
 import com.api.budgeteer.features.residence.dtos.createResidenceDTO
-import com.api.budgeteer.features.residence.toEntity
 import com.api.budgeteer.features.users.UserDTO
-import com.api.budgeteer.features.users.toDTO
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -14,38 +12,36 @@ class ResidenceController(private val residenceHandler: ResidenceHandler) {
 
     @GetMapping()
     fun getResidences(): List<ResidenceDTO> {
-        return residenceHandler.getResidences().map { com.api.budgeteer.features.residence.toDTO(it) }
+        return residenceHandler.getResidences().map { it.toDTO() }
     }
 
     @PostMapping()
     fun createResidence(@RequestBody createResidenceDTO: createResidenceDTO): ResidenceDTO {
-        return com.api.budgeteer.features.residence.toDTO(
-            residenceHandler.createResidence(
+        return residenceHandler.createResidence(
                 createResidenceDTO.name,
                 createResidenceDTO.address,
                 createResidenceDTO.user
-            )
-        )
+            ).toDTO()
     }
 
     @GetMapping("/{id}")
     fun getResidenceById(@PathVariable id: Long): ResidenceDTO {
-        return com.api.budgeteer.features.residence.toDTO(residenceHandler.getResidenceById(id))
+        return residenceHandler.getResidenceById(id).toDTO()
     }
 
     @GetMapping("/{id}/users")
     fun getUsersByResidenceId(@PathVariable id: Long): List<UserDTO> {
-        return residenceHandler.getResidenceById(id).users.map { toDTO(it) }
+        return residenceHandler.getResidenceById(id).users.map { it.toDTO() }
     }
 
     @PostMapping("/{residenceId}/users")
     fun addUserToResidence(@PathVariable residenceId: Long, @RequestParam userEmail: String): ResidenceDTO {
-        return com.api.budgeteer.features.residence.toDTO(residenceHandler.addUserToResidence(userEmail, residenceId))
+        return residenceHandler.addUserToResidence(userEmail, residenceId).toDTO()
     }
 
     @DeleteMapping("/{residenceId}/users")
     fun removeUserFromResidence(@PathVariable residenceId: Long, @RequestParam userEmail: String ): ResidenceDTO {
-        return com.api.budgeteer.features.residence.toDTO(residenceHandler.removeUserFromResidence(userEmail, residenceId))
+        return residenceHandler.removeUserFromResidence(userEmail, residenceId).toDTO()
     }
 
     @DeleteMapping("/{id}")
@@ -55,7 +51,7 @@ class ResidenceController(private val residenceHandler: ResidenceHandler) {
 
     @PutMapping("/{id}")
     fun updateResidence(@PathVariable id: Long, @RequestBody residenceDTO: ResidenceDTO): ResidenceDTO {
-        return com.api.budgeteer.features.residence.toDTO(residenceHandler.updateResidence(id, toEntity(residenceDTO)))
+        return residenceHandler.updateResidence(id, residenceDTO.toEntity()).toDTO()
     }
 
 }

@@ -1,15 +1,28 @@
 package com.api.budgeteer.features.item
 
+import com.api.budgeteer.core.aspects.ControllerLogger
 import com.api.budgeteer.features.item.exceptions.ItemNotFoundException
 import com.api.budgeteer.features.monthlydata.MonthlyDataHandler
 import com.api.budgeteer.features.users.UserHandler
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class ItemService(private val itemRepository: ItemRepository, private val userHandler: UserHandler, private val monthlyDataHandler: MonthlyDataHandler)  : ItemHandler{
 
+    private val LOG: Logger = LoggerFactory.getLogger(ControllerLogger::class.java)
+
     override fun createItem(name: String, price: Double, quantity: Int, userId: Long): Item {
+        LOG.info("HEREEEEEEEEEEEEEE")
+        LOG.info("HEREEEEEEEEEEEEEE")
+        LOG.info("HEREEEEEEEEEEEEEE")
+        LOG.info("HEREEEEEEEEEEEEEE")
+        System.out.println("Testing to see if log works")
         val user = this.userHandler.getUserById(userId)
+        LOG.info("HEREEEEEEEEEEEEEE")
         val itemToSave = Item(name, price, quantity, user)
 
         val monthlyData = this.monthlyDataHandler.getCurrentMonthlyDataByUser(user.id).orElseGet {
@@ -22,6 +35,7 @@ class ItemService(private val itemRepository: ItemRepository, private val userHa
             }
         }
 
+        LOG.info(monthlyData.toString())
 
         this.monthlyDataHandler.updateMonthlyData(monthlyData.id, monthlyData.amountSpent + (price * quantity))
 
