@@ -2,8 +2,6 @@ package com.api.budgeteer.features.users.controllers
 
 import com.api.budgeteer.features.users.UserDTO
 import com.api.budgeteer.features.users.UserHandler
-import com.api.budgeteer.features.users.toDTO
-import com.api.budgeteer.features.users.toEntity
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import org.springframework.http.HttpStatus
@@ -17,12 +15,12 @@ class UserController(private val userHandler: UserHandler)  {
 
     @GetMapping("")
     fun getUsers(): List<UserDTO> {
-        return userHandler.getUsers().stream().map { toDTO(it) }.toList()
+        return userHandler.getUsers().stream().map { it.toDTO() }.toList()
     }
 
     @GetMapping("/{id}")
     fun getUserById(@PathVariable id: Long): UserDTO {
-        return toDTO(userHandler.getUserById(id))
+        return userHandler.getUserById(id).toDTO()
     }
 
     @PostMapping("")
@@ -30,7 +28,7 @@ class UserController(private val userHandler: UserHandler)  {
         val (_, firstName, lastName, email) = userDTO
         val newUser = userHandler.createUser(firstName, lastName, email)
 
-        return ResponseEntity(toDTO(newUser),HttpStatus.CREATED)
+        return ResponseEntity(newUser.toDTO(),HttpStatus.CREATED)
     }
 
     @DeleteMapping("/{id}")
@@ -42,9 +40,9 @@ class UserController(private val userHandler: UserHandler)  {
 
     @PutMapping("/{id}")
     fun updateUser(@PathVariable id: Long, @RequestBody @Valid userDTO: UserDTO): ResponseEntity<UserDTO> {
-        val user = toEntity(userDTO)
+        val user = userDTO.toEntity()
         val updatedUser = userHandler.updateUser(id, user)
 
-        return ResponseEntity(toDTO(updatedUser) ,HttpStatus.OK)
+        return ResponseEntity(updatedUser?.toDTO() ,HttpStatus.OK)
     }
 }
