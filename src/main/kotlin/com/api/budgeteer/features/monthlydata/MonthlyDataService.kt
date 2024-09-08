@@ -71,7 +71,7 @@ class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepositor
             if (user.id != userId) {
                 val userMonthlyData = this.getCurrentMonthlyDataByUser(user.id).orElseThrow{ MonthlyDataNotFoundException(user.id) }
                 val debt = (userMonthlyData.amountSpent / totalUsers) - (monthlyData.amountSpent / totalUsers)
-                val debtDTO = DebtDTO(com.api.budgeteer.features.users.toDTO(debtOwner), com.api.budgeteer.features.users.toDTO(user), debt)
+                val debtDTO = DebtDTO(debtOwner.toDTO(), user.toDTO(), debt)
                 debtList.add(debtDTO)
             }
         }

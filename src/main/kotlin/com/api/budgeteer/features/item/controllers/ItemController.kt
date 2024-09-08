@@ -17,6 +17,8 @@ class ItemController (private val itemHandler: ItemHandler){
     fun createItem(@RequestBody @Valid itemDTO: ItemDTO): ItemDTO {
         val (_, userId, name, price, quantity) = itemDTO
 
+        System.out.println("-----------------TEST---------------------")
+
         return this.itemHandler.createItem(name, price, quantity, userId).toDTO()
     }
 

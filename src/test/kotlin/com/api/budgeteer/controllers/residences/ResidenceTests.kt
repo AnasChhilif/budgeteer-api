@@ -40,7 +40,7 @@ class ResidenceTests {
             ResidenceDTO(1, "Residence 1", "Address 1", listOf()),
             ResidenceDTO(2, "Residence 2", "Address 2", listOf())
         )
-        `when`(residenceHandler.getResidences()).thenReturn(residences.map { toEntity(it) })
+        `when`(residenceHandler.getResidences()).thenReturn(residences.map { it.toEntity() })
 
         mockMvc.perform(get("/residences"))
             .andExpect(status().isOk)
@@ -55,7 +55,7 @@ class ResidenceTests {
     @Test
     fun `should return a residence`() {
         val residence = ResidenceDTO(1, "Residence 1", "Address 1", listOf())
-        `when`(residenceHandler.getResidenceById(1)).thenReturn(toEntity(residence))
+        `when`(residenceHandler.getResidenceById(1)).thenReturn(residence.toEntity())
 
         mockMvc.perform(get("/residences/1"))
             .andExpect(status().isOk)
@@ -102,7 +102,7 @@ class ResidenceTests {
         val updatedResidence = Residence(1, "Updated Residence", "Updated Address", listOf())
         val residenceDTO = ResidenceDTO(1, "Updated Residence", "Updated Address", listOf())
 
-        `when`(residenceHandler.updateResidence(1, toEntity(residenceDTO))).thenReturn(updatedResidence)
+        `when`(residenceHandler.updateResidence(1, residenceDTO.toEntity())).thenReturn(updatedResidence)
 
         mockMvc.perform(
             put("/residences/1")
