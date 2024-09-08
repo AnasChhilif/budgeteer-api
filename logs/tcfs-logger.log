@@ -35,3 +35,12 @@ Caused by: org.springframework.context.annotation.ConflictingBeanDefinitionExcep
 	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:197)
 	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:165)
 	... 18 common frames omitted
+2024-09-08 12:01:59,779 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
+2024-09-08 12:01:59,794 INFO o.s.b.StartupInfoLogger [main] Starting UserControllerTest using Java 17.0.10 with PID 2310 (started by saadbeidouri in /Users/saadbeidouri/Documents/Projets/BeidouriProject/budgeteer-api)
+2024-09-08 12:01:59,794 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-09-08 12:01:59,794 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-09-08 12:02:00,835 WARN o.s.b.a.m.MustacheAutoConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Mustache configuration, or set spring.mustache.check-template-location=false)
+2024-09-08 12:02:00,848 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2024-09-08 12:02:00,848 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2024-09-08 12:02:00,849 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2024-09-08 12:02:00,865 INFO o.s.b.StartupInfoLogger [main] Started UserControllerTest in 1.266 seconds (process running for 1.867)
