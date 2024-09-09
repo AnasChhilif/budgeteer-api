@@ -24,7 +24,7 @@ data class Residence (
 
 ) : TraceableEntity(){
     constructor(name: String, address: String, users: List<User>) : this(0, name, address, users)
-    constructor(id: Long?, name: String, address: String) : this(id?.also { it }?: 0, name, address, listOf<User>())
+    constructor(id: Long?, name: String, address: String) : this(id?: 0, name, address, listOf<User>())
     constructor() : this(0, "residenceName", "residenceAddress", listOf(User(), User()))
 
     fun toDTO() = ResidenceDTO(id, name, address, users.map { it.id })
