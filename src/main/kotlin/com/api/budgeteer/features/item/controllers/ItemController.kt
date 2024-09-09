@@ -22,6 +22,11 @@ class ItemController (private val itemHandler: ItemHandler){
         return this.itemHandler.createItem(name, price, quantity, userId).toDTO()
     }
 
+    @PostMapping("/{itemId}/approve")
+    fun approveItem(@PathVariable itemId: Long, @RequestParam userId: Long): Boolean {
+        return itemHandler.approveItem(itemId, userId)
+    }
+
     @GetMapping("/{id}")
     fun getItemById(@PathVariable id: Long): ItemDTO {
         return itemHandler.getItemById(id).toDTO()

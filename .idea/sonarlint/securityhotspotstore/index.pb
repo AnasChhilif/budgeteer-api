@@ -22,38 +22,22 @@ r
 Bsrc/main/kotlin/com/api/budgeteer/core/entities/TraceableEntity.kt,f/6/f67f17c04985026ad9ccedc053ad7335d3757f86
 h
 8src/main/kotlin/com/api/budgeteer/features/users/User.kt,0/8/087cf68799f22f5fa3c19cb4da6dd8e7861f1fcd
-r
-Bsrc/main/kotlin/com/api/budgeteer/features/users/UserController.kt,9/6/96e326633f6eea9305bdff8d29f2566891e27f92
 o
 ?src/main/kotlin/com/api/budgeteer/features/users/UserHandler.kt,2/7/2792e9d954a5c84ebaf88d259b60ffde9b9126a3
 k
 ;src/main/kotlin/com/api/budgeteer/features/users/UserDTO.kt,2/c/2c0559a26c065f0daef6d159145dea4d33911dc3
 o
 ?src/main/kotlin/com/api/budgeteer/features/users/UserService.kt,2/6/2686beed232ed9b691eb8e7eed780b0242ce8a7a
-e
-5src/test/kotlin/com/api/budgeteer/users/UsersTests.kt,2/9/292bfc62db950ea3a33bfe5f62add4abd2c728fb
 q
 Asrc/test/kotlin/com/api/budgeteer/controllers/users/UsersTests.kt,7/3/73671e54a22bc8672352e5c7c0f9beadc0e8ead9
 q
 Asrc/main/kotlin/com/api/budgeteer/features/users/UserDtoMapper.kt,6/e/6e1f1fc2c3fa2c59d77cfd1928a9651cbd165a0e
-{
-Ksrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceController.kt,6/1/6165683cffbac19fe5f88e93b4b551071353080b
-|
-Lsrc/main/kotlin/com/api/budgeteer/features/residences/ResidenceController.kt,1/8/181ec19520a792cd3806ec7a9690625d04ac9d62
-}
-Msrc/main/kotlin/com/api/budgeteer/features/residences/ResidencesController.kt,2/e/2eb8306d279389e1223a90d8b07ba2320d407479
-r
-Bsrc/main/kotlin/com/api/budgeteer/features/residences/Residence.kt,4/9/497498b081a397916bc89b2edb608c5e3fdaf42d
-u
-Esrc/main/kotlin/com/api/budgeteer/features/residences/ResidenceDTO.kt,4/a/4a669168530151c2067ae0bf965a4978be2660ad
 @
 bruno/bruno.json,f/2/f2d53a3457a3e05a84b009dd22f35990d2a361e0
 H
 bruno/users/Add user.bru,d/2/d2ae4a2154e0c16345a6a1c767ce2ec54fa6debe
 x
 Hsrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceHandler.kt,c/9/c95258868b44b5509a4832b71023bac7aaa80a4d
-t
-Dsrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceDTO.kt,9/2/928e28f27f75ed5e27e571e0556d59cb49d05218
 {
 Ksrc/main/kotlin/com/api/budgeteer/features/residence/ResidenceRepository.kt,d/9/d99522deb8a7696dce3adc71a168fa3d41ac0591
 x
@@ -79,3 +63,5 @@ D
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+p
+@src/main/kotlin/com/api/budgeteer/features/item/ItemDTOMapper.kt,5/0/50fc6441f53992de93e927befc2362f050619b8d

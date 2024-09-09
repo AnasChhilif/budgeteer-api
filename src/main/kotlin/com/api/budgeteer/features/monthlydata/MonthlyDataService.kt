@@ -63,7 +63,7 @@ class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepositor
     override fun getCurrentUserDebt(userId: Long): List<DebtDTO> {
         val residence = this.residenceHandler.getResidenceByUserId(userId)
         val debtOwner = this.userHandler.getUserById(userId)
-        val monthlyData = this.getCurrentMonthlyDataByUser(userId).orElseThrow{ MonthlyDataNotFoundException(userId) }
+        val monthlyData = getOrCreateMonthlyData(userId, residence.id)
         val debtList = mutableListOf<DebtDTO>()
         val totalUsers = residence.users.size
 
@@ -77,6 +77,14 @@ class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepositor
         }
 
         return debtList
+    }
+
+    private fun getOrCreateMonthlyData(userId: Long, residenceId: Long): MonthlyData {
+        return this.getCurrentMonthlyDataByUser(userId).orElseGet {
+            val newMonthlyData = createMonthlyData(userId, residenceId, 0.0)
+            monthlyDataRepository.save(newMonthlyData)
+            newMonthlyData
+        }
     }
 
     override fun updateMonthlyData(id: Long, newAmount: Double): MonthlyData {
