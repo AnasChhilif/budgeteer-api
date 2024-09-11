@@ -1,4 +1,4 @@
-package com.api.budgeteer.features.item.exceptions
+package com.api.budgeteer.features.itemApproval.exceptions
 
 class ItemApprovalNotFoundException : Exception {
     constructor() : super("Item approval not found")

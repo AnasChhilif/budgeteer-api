@@ -1,8 +1,8 @@
 package com.api.budgeteer.features.item
 
 import com.api.budgeteer.core.aspects.ControllerLogger
-import com.api.budgeteer.features.item.exceptions.ItemApprovalNotCreatedException
-import com.api.budgeteer.features.item.exceptions.ItemApprovalNotFoundException
+import com.api.budgeteer.features.itemApproval.exceptions.ItemApprovalNotCreatedException
+import com.api.budgeteer.features.itemApproval.exceptions.ItemApprovalNotFoundException
 import com.api.budgeteer.features.item.exceptions.ItemNotCreatedException
 import com.api.budgeteer.features.item.exceptions.ItemNotFoundException
 import com.api.budgeteer.features.itemApproval.ItemApproval

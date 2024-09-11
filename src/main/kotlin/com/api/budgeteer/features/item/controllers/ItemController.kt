@@ -3,6 +3,9 @@ package com.api.budgeteer.features.item.controllers
 import com.api.budgeteer.features.item.ItemDTO
 import com.api.budgeteer.features.item.ItemHandler
 import com.api.budgeteer.features.item.exceptions.*
+import com.api.budgeteer.features.itemApproval.exceptions.ItemApprovalExceptionCode
+import com.api.budgeteer.features.itemApproval.exceptions.ItemApprovalNotCreatedException
+import com.api.budgeteer.features.itemApproval.exceptions.ItemApprovalNotFoundException
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -24,7 +27,7 @@ class ItemController (private val itemHandler: ItemHandler){
         } catch (e: ItemNotCreatedException) {
             ResponseEntity<ItemDTO>(HttpStatus.valueOf(ItemExceptionCode.ITEM_NOT_CREATED.code))
         } catch (e : ItemApprovalNotCreatedException){
-            ResponseEntity<ItemDTO>(HttpStatus.valueOf(ItemExceptionCode.ITEM_APPROVAL_NOT_CREATED.code))
+            ResponseEntity<ItemDTO>(HttpStatus.valueOf(ItemApprovalExceptionCode.ITEM_APPROVAL_NOT_CREATED.code))
         }
 
     }
@@ -34,7 +37,7 @@ class ItemController (private val itemHandler: ItemHandler){
         return try {
             ResponseEntity<Boolean>(itemHandler.approveItem(itemId, userId), HttpStatus.OK)
         } catch (e: ItemApprovalNotFoundException) {
-            ResponseEntity<Boolean>(HttpStatus.valueOf(ItemExceptionCode.ITEM_APPROVAL_NOT_FOUND.code))
+            ResponseEntity<Boolean>(HttpStatus.valueOf(ItemApprovalExceptionCode.ITEM_APPROVAL_NOT_FOUND.code))
         }
     }
 
