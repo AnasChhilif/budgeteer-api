@@ -1,6 +1,9 @@
 package com.api.budgeteer.features.item
 
 import com.api.budgeteer.core.aspects.ControllerLogger
+import com.api.budgeteer.features.itemApproval.exceptions.ItemApprovalNotCreatedException
+import com.api.budgeteer.features.itemApproval.exceptions.ItemApprovalNotFoundException
+import com.api.budgeteer.features.item.exceptions.ItemNotCreatedException
 import com.api.budgeteer.features.item.exceptions.ItemNotFoundException
 import com.api.budgeteer.features.itemApproval.ItemApproval
 import com.api.budgeteer.features.itemApproval.ItemApprovalRepository
@@ -32,11 +35,20 @@ class ItemService(private val itemRepository: ItemRepository,
         val residence = residenceHandler.getResidenceByUserId(user.id)
         val residenceUsers = residence.users
 
-        val savedItem = itemRepository.save(itemToSave)
+        val savedItem: Item
 
+        try {
+            savedItem = itemRepository.save(itemToSave)
+        } catch (e: Exception) {
+            throw ItemNotCreatedException()
+        }
         residenceUsers.forEach { residenceUser ->
             val itemApproval = ItemApproval(item = savedItem, user = residenceUser, approved = false)
-            itemApprovalRepository.save(itemApproval)
+            try {
+                itemApprovalRepository.save(itemApproval)
+            } catch (e: Exception) {
+                throw ItemApprovalNotCreatedException()
+            }
         }
 
         LOG.info("Item created and approval process initiated for residence users")
@@ -49,7 +61,7 @@ class ItemService(private val itemRepository: ItemRepository,
 
 
         val approval = itemApprovalRepository.findByItemIdAndUserId(itemId, userId)
-            ?: throw IllegalStateException("Approval record not found for user $userId and item $itemId")
+            ?: throw ItemApprovalNotFoundException(itemId, userId)
 
 
         approval.approved = true

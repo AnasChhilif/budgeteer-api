@@ -78,7 +78,7 @@ class ResidenceTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(residenceDTO))
         )
-            .andExpect(status().isOk)
+            .andExpect(status().isCreated)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.name").value("Residence 1"))
             .andExpect(jsonPath("$.address").value("Address 1"))

@@ -3,6 +3,7 @@ package com.api.budgeteer.controllers.item
 import com.api.budgeteer.features.item.ItemDTO
 import com.api.budgeteer.features.item.ItemHandler
 import com.api.budgeteer.features.item.controllers.ItemController
+import com.api.budgeteer.features.item.exceptions.ItemExceptionCode
 import com.api.budgeteer.features.residence.Residence
 import com.api.budgeteer.features.users.User
 import com.api.budgeteer.features.users.UserRepository
@@ -80,7 +81,7 @@ class ItemTests {
         mockMvc.perform(post("/items")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(item)))
-            .andExpect(status().isOk)
+            .andExpect(status().isCreated)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.name").value("Item 1"))
             .andExpect(jsonPath("$.isApproved").value(false))
