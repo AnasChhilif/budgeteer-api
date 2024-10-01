@@ -19,4 +19,6 @@ data class UserDTO(
     val email: String,
 
     val residenceId: Long? = null
-)
+) {
+    fun toEntity() = User(firstName, lastName, email)
+}

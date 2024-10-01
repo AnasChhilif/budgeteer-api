@@ -9,12 +9,14 @@ import com.api.budgeteer.features.users.User
 import com.api.budgeteer.features.users.UserHandler
 import com.api.budgeteer.features.users.exceptions.UserNotFoundException
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.temporal.TemporalAdjusters
 import java.util.*
 
 @Service
+@Transactional
 class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepository, private val userHandler: UserHandler, private val residenceHandler: ResidenceHandler): MonthlyDataHandler{
     override fun createMonthlyData(userId: Long, residenceId: Long, initialSpending: Double): MonthlyData {
         val user: User
@@ -61,7 +63,7 @@ class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepositor
     override fun getCurrentUserDebt(userId: Long): List<DebtDTO> {
         val residence = this.residenceHandler.getResidenceByUserId(userId)
         val debtOwner = this.userHandler.getUserById(userId)
-        val monthlyData = this.getCurrentMonthlyDataByUser(userId).orElseThrow{ MonthlyDataNotFoundException(userId) }
+        val monthlyData = getOrCreateMonthlyData(userId, residence.id)
         val debtList = mutableListOf<DebtDTO>()
         val totalUsers = residence.users.size
 
@@ -69,12 +71,20 @@ class MonthlyDataService(private val monthlyDataRepository: MonthlyDateRepositor
             if (user.id != userId) {
                 val userMonthlyData = this.getCurrentMonthlyDataByUser(user.id).orElseThrow{ MonthlyDataNotFoundException(user.id) }
                 val debt = (userMonthlyData.amountSpent / totalUsers) - (monthlyData.amountSpent / totalUsers)
-                val debtDTO = DebtDTO(com.api.budgeteer.features.users.toDTO(debtOwner), com.api.budgeteer.features.users.toDTO(user), debt)
+                val debtDTO = DebtDTO(debtOwner.toDTO(), user.toDTO(), debt)
                 debtList.add(debtDTO)
             }
         }
 
         return debtList
+    }
+
+    private fun getOrCreateMonthlyData(userId: Long, residenceId: Long): MonthlyData {
+        return this.getCurrentMonthlyDataByUser(userId).orElseGet {
+            val newMonthlyData = createMonthlyData(userId, residenceId, 0.0)
+            monthlyDataRepository.save(newMonthlyData)
+            newMonthlyData
+        }
     }
 
     override fun updateMonthlyData(id: Long, newAmount: Double): MonthlyData {

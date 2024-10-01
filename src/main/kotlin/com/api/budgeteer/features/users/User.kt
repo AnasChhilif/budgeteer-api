@@ -26,6 +26,8 @@ data class User(
     constructor(firstName: String, lastName: String, email: String) : this(0, firstName, lastName, email,null)
     constructor() : this(0, "userFirstName", "userLastName", "userEmail@gmail.com",null)
 
+    fun toDTO() = UserDTO(id, firstName, lastName, email, residence?.id)
+
     override fun toString(): String {
         return "User(id=$id, firstName='$firstName', lastName='$lastName', email='$email')"
     }

@@ -7,4 +7,5 @@ interface ItemHandler {
     fun getItemsByUserId(userId: Long): List<Item>
     fun updateItem(item: Item): Item
     fun deleteItem(id: Long)
+    fun approveItem(itemId: Long, userId: Long): Boolean
 }
