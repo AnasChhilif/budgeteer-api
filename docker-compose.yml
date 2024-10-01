@@ -1,4 +1,3 @@
-
 services:
   budgeteer:
     image: budgeteer:latest
@@ -11,6 +10,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: budgeteerpassword
     depends_on:
       - postgres
+    networks:
+      - monitoring
 
   postgres:
     image: postgres:latest
@@ -21,6 +22,8 @@ services:
       POSTGRES_PASSWORD: budgeteerpassword
     ports:
       - "5432:5432"
+    networks:
+      - monitoring
 
   node_exporter:
     image: prom/node-exporter:latest
@@ -30,6 +33,8 @@ services:
     command:
       - '--path.procfs=/proc'
       - '--path.sysfs=/sys'
+    networks:
+      - monitoring
 
   prometheus:
     image: prom/prometheus:latest
@@ -42,8 +47,8 @@ services:
       - "9090:9090"
     depends_on:
       - node_exporter
-
-
+    networks:
+      - monitoring
 
   grafana:
     image: grafana/grafana:latest
@@ -54,3 +59,8 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     depends_on:
       - prometheus
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
